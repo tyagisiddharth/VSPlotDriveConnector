@@ -1,0 +1,19 @@
+schema {
+  query: Query
+}
+
+type Query {
+  PlotsGenerator(
+    case: String!
+    predicted_targets:[Float!]!
+    actual_targets:[Float!]!
+    dates: [String!]!
+  ): TPGResult!
+}
+
+type TPGResult{
+  success: Boolean,
+  error: String,
+  file_web_link: [String!],
+  folder_web_link: String
+}
