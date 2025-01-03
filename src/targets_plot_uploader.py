@@ -3,16 +3,12 @@ from googleapiclient.errors import HttpError
 from google.oauth2 import service_account
 from googleapiclient.http import MediaFileUpload
 from google.oauth2 import service_account
-# from google_auth_oauthlib.flow import InstalledAppFlow
 from src.targets_plot_generator import image_addresses
 import json
 from src import settings
 import pandas as pd
 import tempfile
 from PIL import Image
-# import matplotlib.pyplot as plt
-# import tempfile
-import os
 import datetime
 
 
@@ -58,7 +54,6 @@ def resolve_TargetPlotsUploader(_, info,case,predicted_targets,actual_targets,da
                         media = MediaFileUpload(image_path, mimetype='image/jpeg')
                     else:
                         media = MediaFileUpload(image_path, mimetype='image/png')
-                    # media = MediaFileUpload(image_path, mimetype="image/png")
                     file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
                     file_id = file['id']
 
@@ -82,21 +77,7 @@ def resolve_TargetPlotsUploader(_, info,case,predicted_targets,actual_targets,da
             except HttpError as error:
                 print(f"An error occurred: {error}")
                 return None
-            
-        # def get_folder_id_by_name(parent_folder_name):
-        #     """Get the ID of a folder by its name."""
-        #     try:
-        #         query = f"name='{parent_folder_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
-        #         response = service.files().list(q=query, fields='files(id)').execute()
-        #         folders = response.get('files', [])
-        #         if folders:
-        #             return folders[0]['id']
-        #         else:
-        #             return None
-        #     except HttpError as error:
-        #         print(f"An error occurred: {error}")
-        #         return None
-
+          
         def create_folder_if_not_exists(service, new_folder,parent_folder_id):
             """Create a folder in Google Drive if it doesn't exist and return its ID."""
             try:

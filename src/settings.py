@@ -1,6 +1,6 @@
 
 credentials_file = "enter_your_google_drive_api_credentials_path"
-username = "tyagi.siddhartha9720@gmail.com"
+username = "your_personal_email_where_plots_will_be_saved"
 domain = 'googleapi.com'
 
 #server
